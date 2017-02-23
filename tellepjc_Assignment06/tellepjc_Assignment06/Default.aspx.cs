@@ -37,6 +37,7 @@ namespace tellepjc_Assignment06
             //initializes the connection object with the value of our connection string
             conn = new System.Data.SqlClient.SqlConnection(strConn.ConnectionString);
 
+            
             // This could go wrong in so many ways...
             try
             {
@@ -102,7 +103,7 @@ namespace tellepjc_Assignment06
             catch (Exception ex)
             {
             }
-
+            
             //use the reader object to execuet our query
             reader = comm.ExecuteReader();
 
