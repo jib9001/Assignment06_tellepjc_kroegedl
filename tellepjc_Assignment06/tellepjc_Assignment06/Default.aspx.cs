@@ -86,6 +86,43 @@ namespace tellepjc_Assignment06
         private void PopulateLoyaltyList()
         {
             //variables to hold the data returned by the query and add it to the dropdown menu
+            int loyaltyID;
+            string loyaltyNumber;
+            ListItem loyaltyItem;
+
+            // Clear the list box, in case we've already loaded something into it.
+            ddlLoyaltyID.Items.Clear();
+            // create sql command object with the open connection object
+            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            //try to close the reader in case it's stil open, do nothing if we can't
+            try
+            {
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            //use the reader object to execuet our query
+            reader = comm.ExecuteReader();
+
+            //iterate through the dataset line by line
+            while (reader.Read())
+            {
+                //stores the primary key of the model
+                modelID = reader.GetInt32(0);
+                //stores the name of the model
+                model = reader.GetString(1);
+                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                modelItem = new ListItem(model, modelID.ToString());
+                //adds the item to the dropdown menu
+                //drpModel.Items.Add(modelItem);
+            }
+        }
+
+        private void PopulateTransactionTypeList()
+        {
+            //variables to hold the data returned by the query and add it to the dropdown menu
             int modelID;
             string model;
             ListItem modelItem;
@@ -120,29 +157,152 @@ namespace tellepjc_Assignment06
             }
         }
 
-        private void PopulateTransactionTypeList()
-        {
-
-        }
-
         private void PopulateStoreList()
         {
+            //variables to hold the data returned by the query and add it to the dropdown menu
+            int modelID;
+            string model;
+            ListItem modelItem;
 
+            // Clear the list box, in case we've already loaded something into it.
+            //drpModel.Items.Clear();
+            // create sql command object with the open connection object
+            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            //try to close the reader in case it's stil open, do nothing if we can't
+            try
+            {
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            //use the reader object to execuet our query
+            reader = comm.ExecuteReader();
+
+            //iterate through the dataset line by line
+            while (reader.Read())
+            {
+                //stores the primary key of the model
+                modelID = reader.GetInt32(0);
+                //stores the name of the model
+                model = reader.GetString(1);
+                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                modelItem = new ListItem(model, modelID.ToString());
+                //adds the item to the dropdown menu
+                //drpModel.Items.Add(modelItem);
+            }
         }
 
         private void PopulateEmployeeList()
         {
+            //variables to hold the data returned by the query and add it to the dropdown menu
+            int modelID;
+            string model;
+            ListItem modelItem;
 
+            // Clear the list box, in case we've already loaded something into it.
+            //drpModel.Items.Clear();
+            // create sql command object with the open connection object
+            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            //try to close the reader in case it's stil open, do nothing if we can't
+            try
+            {
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            //use the reader object to execuet our query
+            reader = comm.ExecuteReader();
+
+            //iterate through the dataset line by line
+            while (reader.Read())
+            {
+                //stores the primary key of the model
+                modelID = reader.GetInt32(0);
+                //stores the name of the model
+                model = reader.GetString(1);
+                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                modelItem = new ListItem(model, modelID.ToString());
+                //adds the item to the dropdown menu
+                //drpModel.Items.Add(modelItem);
+            }
         }
 
         private void PopulateProductList()
         {
+            //variables to hold the data returned by the query and add it to the dropdown menu
+            int modelID;
+            string model;
+            ListItem modelItem;
 
+            // Clear the list box, in case we've already loaded something into it.
+            //drpModel.Items.Clear();
+            // create sql command object with the open connection object
+            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            //try to close the reader in case it's stil open, do nothing if we can't
+            try
+            {
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            //use the reader object to execuet our query
+            reader = comm.ExecuteReader();
+
+            //iterate through the dataset line by line
+            while (reader.Read())
+            {
+                //stores the primary key of the model
+                modelID = reader.GetInt32(0);
+                //stores the name of the model
+                model = reader.GetString(1);
+                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                modelItem = new ListItem(model, modelID.ToString());
+                //adds the item to the dropdown menu
+                //drpModel.Items.Add(modelItem);
+            }
         }
 
         private void PopulateCouponList()
         {
+            //variables to hold the data returned by the query and add it to the dropdown menu
+            int modelID;
+            string model;
+            ListItem modelItem;
 
+            // Clear the list box, in case we've already loaded something into it.
+            //drpModel.Items.Clear();
+            // create sql command object with the open connection object
+            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            //try to close the reader in case it's stil open, do nothing if we can't
+            try
+            {
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            //use the reader object to execuet our query
+            reader = comm.ExecuteReader();
+
+            //iterate through the dataset line by line
+            while (reader.Read())
+            {
+                //stores the primary key of the model
+                modelID = reader.GetInt32(0);
+                //stores the name of the model
+                model = reader.GetString(1);
+                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                modelItem = new ListItem(model, modelID.ToString());
+                //adds the item to the dropdown menu
+                //drpModel.Items.Add(modelItem);
+            }
         }
     }
 }
