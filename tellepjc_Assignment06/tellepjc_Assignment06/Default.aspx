@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <table>
+    <table runat="server" id="tableForm">
         <tr>
             <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblLoyaltyID" runat="server" Text="Loyalty ID"></asp:Label>
