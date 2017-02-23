@@ -23,7 +23,7 @@ namespace tellepjc_Assignment06
                 // We will open the connection one time and leave it open.
                 OpenConnection();
                 // We will populate the dropdown menus once as their contents don't change often
-                PopulateDropdowns()
+                PopulateDropdowns();
             }
         }
 
