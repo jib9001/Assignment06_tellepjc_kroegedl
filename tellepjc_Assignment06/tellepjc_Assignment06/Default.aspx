@@ -20,7 +20,7 @@
 
             <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblDateOfTransaction" runat="server" Text="Date Of Transaction"></asp:Label>
-                <asp:TextBox ID="tbxDateOfTransaction" runat="server" onkeypress="return this.value.length<=20"</asp:TextBox>
+                <asp:TextBox ID="tbxDateOfTransaction" runat="server" onkeypress="return this.value.length<=20"></asp:TextBox>
                 </td>
 
             <td align="right" style="height: 20%; padding-left: 2%">
