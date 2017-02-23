@@ -20,12 +20,12 @@
 
             <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblDateOfTransaction" runat="server" Text="Date Of Transaction"></asp:Label>
-                <asp:TextBox ID="tbxDateOfTransaction" runat="server" onkeypress="return this.value.length<=20"></asp:TextBox>
+                <asp:TextBox ID="tbxDateOfTransaction" runat="server" onkeypress="return this.value.length<=19"></asp:TextBox>
                 </td>
 
             <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblTimeOfTransaction" runat="server" Text="Time Of Transaction"></asp:Label>
-                <asp:TextBox ID="tbxTimeOfTransaction" runat="server" onkeypress="return this.value.length<=20"></asp:TextBox>
+                <asp:TextBox ID="tbxTimeOfTransaction" runat="server" onkeypress="return this.value.length<=19"></asp:TextBox>
                 </td>
         </tr>
 
@@ -66,7 +66,7 @@
              <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblPricePerSellableUnitAsMarked" runat="server" Text="What it cost"></asp:Label>
                 <br />
-                 <asp:TextBox ID="tbxPricePerSellableUnitAsMarked" runat="server" onkeypress="return this.value.length<=15"></asp:TextBox>
+                 <asp:TextBox ID="tbxPricePerSellableUnitAsMarked" runat="server" onkeypress="return this.value.length<=14"></asp:TextBox>
                 </td>
 
 
@@ -78,19 +78,19 @@
               <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblPricePerSellableUnitToTheCustomer" runat="server" Text="What you paid"></asp:Label>
                 <br />
-                 <asp:TextBox ID="tbxPricePerSellableUnitToTheCustomer" runat="server" onkeypress="return this.value.length<=15"></asp:TextBox>
+                 <asp:TextBox ID="tbxPricePerSellableUnitToTheCustomer" runat="server" onkeypress="return this.value.length<=14"></asp:TextBox>
                 </td>
 
               <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblTransactionComment" runat="server" Text="Comments about the transaction"></asp:Label>
                 <br />
-                 <asp:TextBox ID="tbxTransactionComment" runat="server" onkeypress="return this.value.length<=100"></asp:TextBox>
+                 <asp:TextBox ID="tbxTransactionComment" runat="server" onkeypress="return this.value.length<=99"></asp:TextBox>
                 </td>
 
               <td align="right" style="height: 20%; padding-left: 2%">
                 <asp:Label ID="lblTransactionDetailComment" runat="server" Text="Comments about the transaction detail"></asp:Label>
                 <br />
-                 <asp:TextBox ID="tbxtransactionDetailComment" runat="server" onkeypress="return this.value.length<=100"></asp:TextBox>
+                 <asp:TextBox ID="tbxtransactionDetailComment" runat="server" onkeypress="return this.value.length<=99"></asp:TextBox>
                 </td>
 
         </tr>
