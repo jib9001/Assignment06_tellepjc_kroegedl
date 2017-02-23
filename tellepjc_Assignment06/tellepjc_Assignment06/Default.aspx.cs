@@ -93,7 +93,7 @@ namespace tellepjc_Assignment06
             // Clear the list box, in case we've already loaded something into it.
             ddlLoyaltyID.Items.Clear();
             // create sql command object with the open connection object
-            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            comm = new SqlCommand("SELECT LoyaltyID, LoyaltyNumber FROM tLoyalty", conn);
             //try to close the reader in case it's stil open, do nothing if we can't
             try
             {
@@ -110,18 +110,19 @@ namespace tellepjc_Assignment06
             while (reader.Read())
             {
                 //stores the primary key of the model
-                modelID = reader.GetInt32(0);
+                loyaltyID = reader.GetInt32(0);
                 //stores the name of the model
-                model = reader.GetString(1);
+                loyaltyNumber = reader.GetString(1);
                 //creates a list item with the text of the name of the model, and the value of the primary key of the model
-                modelItem = new ListItem(model, modelID.ToString());
+                loyaltyItem = new ListItem(loyaltyNumber, loyaltyID.ToString());
                 //adds the item to the dropdown menu
-                //drpModel.Items.Add(modelItem);
+                ddlLoyaltyID.Items.Add(loyaltyItem);
             }
         }
 
         private void PopulateTransactionTypeList()
         {
+            /*
             //variables to hold the data returned by the query and add it to the dropdown menu
             int modelID;
             string model;
@@ -155,10 +156,12 @@ namespace tellepjc_Assignment06
                 //adds the item to the dropdown menu
                 //drpModel.Items.Add(modelItem);
             }
+            */
         }
 
         private void PopulateStoreList()
         {
+            /*
             //variables to hold the data returned by the query and add it to the dropdown menu
             int modelID;
             string model;
@@ -192,10 +195,12 @@ namespace tellepjc_Assignment06
                 //adds the item to the dropdown menu
                 //drpModel.Items.Add(modelItem);
             }
+            */
         }
 
         private void PopulateEmployeeList()
         {
+            /*
             //variables to hold the data returned by the query and add it to the dropdown menu
             int modelID;
             string model;
@@ -229,10 +234,12 @@ namespace tellepjc_Assignment06
                 //adds the item to the dropdown menu
                 //drpModel.Items.Add(modelItem);
             }
+            */
         }
 
         private void PopulateProductList()
         {
+            /*
             //variables to hold the data returned by the query and add it to the dropdown menu
             int modelID;
             string model;
@@ -266,10 +273,12 @@ namespace tellepjc_Assignment06
                 //adds the item to the dropdown menu
                 //drpModel.Items.Add(modelItem);
             }
+            */
         }
 
         private void PopulateCouponList()
         {
+            /*
             //variables to hold the data returned by the query and add it to the dropdown menu
             int modelID;
             string model;
@@ -303,6 +312,7 @@ namespace tellepjc_Assignment06
                 //adds the item to the dropdown menu
                 //drpModel.Items.Add(modelItem);
             }
+            */
         }
     }
 }
