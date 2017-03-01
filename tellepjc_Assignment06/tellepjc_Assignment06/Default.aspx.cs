@@ -290,49 +290,75 @@ namespace tellepjc_Assignment06
             comm.Parameters.Add(loyaltyID);
 
             SqlParameter date = new SqlParameter("@DateOfTransaction", calDateOfTransaction.SelectedDate);
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.Date;
-            comm.Parameters.Add(loyaltyID);
+            date.Direction = System.Data.ParameterDirection.Input;
+            date.DbType = System.Data.DbType.Date;
+            comm.Parameters.Add(date);
 
             SqlParameter time = new SqlParameter("@TimeOfTransaction", tbxTimeOfTransaction.Text);
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.String;
+            time.Direction = System.Data.ParameterDirection.Input;
+            time.DbType = System.Data.DbType.String;
             comm.Parameters.Add(time);
 
             SqlParameter TransactionTypeID = new SqlParameter("@TransactionTypeID", Convert.ToInt32(ddlTransactionTypeID.SelectedValue));
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.Int32;
+            TransactionTypeID.Direction = System.Data.ParameterDirection.Input;
+            TransactionTypeID.DbType = System.Data.DbType.Int32;
             comm.Parameters.Add(TransactionTypeID);
 
             SqlParameter storeID = new SqlParameter("@StoreID", Convert.ToInt32(ddlStoreID.SelectedValue));
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.Int32;
+            storeID.Direction = System.Data.ParameterDirection.Input;
+            storeID.DbType = System.Data.DbType.Int32;
             comm.Parameters.Add(storeID);
 
             SqlParameter emplID = new SqlParameter("@EmplID", Convert.ToInt32(ddlEmplID.SelectedValue));
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.Int32;
+            emplID.Direction = System.Data.ParameterDirection.Input;
+            emplID.DbType = System.Data.DbType.Int32;
             comm.Parameters.Add(emplID);
 
             SqlParameter productID = new SqlParameter("@ProductID", Convert.ToInt32(ddlProductID.SelectedValue));
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.Int32;
+            productID.Direction = System.Data.ParameterDirection.Input;
+            productID.DbType = System.Data.DbType.Int32;
             comm.Parameters.Add(productID);
 
             SqlParameter qty = new SqlParameter("@Qty", Convert.ToInt32(tbxQty.Text));
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.Int32;
+            qty.Direction = System.Data.ParameterDirection.Input;
+            qty.DbType = System.Data.DbType.Int32;
             comm.Parameters.Add(qty);
 
-            SqlParameter price = new SqlParameter("@LoyaltyID", Convert.ToInt32(ddlLoyaltyID.SelectedValue));
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.String;
-            comm.Parameters.Add(loyaltyID);
+            SqlParameter initialPrice = new SqlParameter("@PricePerSellableUnitAsMarked", PricePerSellableUnitMarked(Convert.ToInt32(ddlProductID.Text)));
+            initialPrice.Direction = System.Data.ParameterDirection.Input;
+            initialPrice.DbType = System.Data.DbType.String;
+            comm.Parameters.Add(initialPrice);
+
         }
 
         private string PricePerSellableUnitMarked(int productID)
         {
-            return "";
+            //variables to hold the data returned by the query and add it to the dropdown menu
+            string price;
+
+            // create sql command object with the open connection object
+            comm = new SqlCommand("SELECT InitialPricePerSellableUnit FROM tProduct WHERE ProductID = " + productID, conn);
+            //try to close the reader in case it's stil open, do nothing if we can't
+            try
+            {
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            //use the reader object to execuet our query
+            reader = comm.ExecuteReader();
+
+            //iterate through the dataset line by line
+            reader.Read();
+
+                //stores the price
+            price = reader.GetString(0);
+            //creates a list item with the text of the name of the model, and the value of the primary key of the model
+
+
+            return price;
         }
     }
 }
