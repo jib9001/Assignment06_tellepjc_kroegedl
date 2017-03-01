@@ -124,16 +124,16 @@ namespace tellepjc_Assignment06
 
         private void PopulateTransactionTypeList()
         {
-            /*
+            
             //variables to hold the data returned by the query and add it to the dropdown menu
-            int modelID;
-            string model;
-            ListItem modelItem;
+            int transactionTypeID;
+            string transactionType;
+            ListItem transactionTypeItem;
 
             // Clear the list box, in case we've already loaded something into it.
             //drpModel.Items.Clear();
             // create sql command object with the open connection object
-            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            comm = new SqlCommand("SELECT TransactionTypeID, TransactionType FROM tTransactionType", conn);
             //try to close the reader in case it's stil open, do nothing if we can't
             try
             {
@@ -150,29 +150,29 @@ namespace tellepjc_Assignment06
             while (reader.Read())
             {
                 //stores the primary key of the model
-                modelID = reader.GetInt32(0);
+                transactionTypeID = reader.GetInt32(0);
                 //stores the name of the model
-                model = reader.GetString(1);
+                transactionType = reader.GetString(1);
                 //creates a list item with the text of the name of the model, and the value of the primary key of the model
-                modelItem = new ListItem(model, modelID.ToString());
+                transactionTypeItem = new ListItem(transactionType, transactionTypeID.ToString());
                 //adds the item to the dropdown menu
-                //drpModel.Items.Add(modelItem);
+                ddlTransactionTypeID.Items.Add(transactionTypeItem);
             }
-            */
+
         }
 
         private void PopulateStoreList()
         {
-            /*
+            
             //variables to hold the data returned by the query and add it to the dropdown menu
-            int modelID;
-            string model;
-            ListItem modelItem;
+            int productID;
+            string product;
+            ListItem productItem;
 
             // Clear the list box, in case we've already loaded something into it.
             //drpModel.Items.Clear();
             // create sql command object with the open connection object
-            comm = new SqlCommand("SELECT * FROM tRobo", conn);
+            comm = new SqlCommand("SELECT ProductID, Description FROM tProduct", conn);
             //try to close the reader in case it's stil open, do nothing if we can't
             try
             {
@@ -189,15 +189,15 @@ namespace tellepjc_Assignment06
             while (reader.Read())
             {
                 //stores the primary key of the model
-                modelID = reader.GetInt32(0);
+                productID = reader.GetInt32(0);
                 //stores the name of the model
-                model = reader.GetString(1);
+                product = reader.GetString(1);
                 //creates a list item with the text of the name of the model, and the value of the primary key of the model
-                modelItem = new ListItem(model, modelID.ToString());
+                productItem = new ListItem(product, productID.ToString());
                 //adds the item to the dropdown menu
-                //drpModel.Items.Add(modelItem);
+                ddlProductID.Items.Add(productItem);
             }
-            */
+            
         }
 
         private void PopulateEmployeeList()
