@@ -114,7 +114,7 @@
 
             <td></td>
             <td align="right" style="height: 20%; padding-left: 2%">
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit!" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit!" OnClick="btnSubmit_Click" />
             </td>
         </tr>
     </table>
