@@ -26,7 +26,7 @@ namespace tellepjc_Assignment06
                 // We will populate the dropdown menus once as their contents don't change often
                 PopulateDropdowns();
                 // sets the calendar to todays date, only will run on the first page load event.
-                
+                this.calDateOfTransaction.SelectedDate = DateTime.Today;
             }
         }
 
