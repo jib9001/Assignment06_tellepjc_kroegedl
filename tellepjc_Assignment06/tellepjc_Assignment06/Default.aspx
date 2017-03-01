@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="tellepjc_Assignment06.Default" %>
 
 <!DOCTYPE html>
+<link href="tellepjc_Assignment06StyleSheet.css" rel="stylesheet" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
