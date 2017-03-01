@@ -25,6 +25,8 @@ namespace tellepjc_Assignment06
                 OpenConnection();
                 // We will populate the dropdown menus once as their contents don't change often
                 PopulateDropdowns();
+                // sets the calendar to todays date, only will run on the first page load event.
+                
             }
         }
 
