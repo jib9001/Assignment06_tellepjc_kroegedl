@@ -276,12 +276,13 @@ namespace tellepjc_Assignment06
                 //creates a list item with the text of the name of the model, and the value of the primary key of the model
                 storeItem = new ListItem(store, storeID.ToString());
                 //adds the item to the dropdown menu
-                //drpModel.Items.Add(modelItem);
+                ddlStoreID.Items.Add(storeItem);
             }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            comm = new SqlCommand("dbo.spAddTransactionAndDetail", conn);
             comm.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter loyaltyID = new SqlParameter("@LoyaltyID", Convert.ToInt32(ddlLoyaltyID.SelectedValue));
@@ -329,11 +330,32 @@ namespace tellepjc_Assignment06
             initialPrice.DbType = System.Data.DbType.String;
             comm.Parameters.Add(initialPrice);
 
+            SqlParameter priceSold = new SqlParameter("@PricePerSellableUnitToTheCustomer", tbxPricePerSellableUnitToTheCustomer.Text);
+            priceSold.Direction = System.Data.ParameterDirection.Input;
+            priceSold.DbType = System.Data.DbType.String;
+            comm.Parameters.Add(priceSold);
+
+            SqlParameter transactionComment = new SqlParameter("@TransactionComment", (tbxTransactionComment.Text + "_tellepjc_kroegedl"));
+            transactionComment.Direction = System.Data.ParameterDirection.Input;
+            transactionComment.DbType = System.Data.DbType.String;
+            comm.Parameters.Add(transactionComment);
+
+            SqlParameter transactionDetailComment = new SqlParameter("@TransactionDetailComment", (tbxtransactionDetailComment.Text + "_tellepjc_kroegedl"));
+            transactionDetailComment.Direction = System.Data.ParameterDirection.Input;
+            transactionDetailComment.DbType = System.Data.DbType.String;
+            comm.Parameters.Add(transactionDetailComment);
+
+            SqlParameter couponID = new SqlParameter("@CouponDetailID", 0);
+            couponID.Direction = System.Data.ParameterDirection.Input;
+            couponID.DbType = System.Data.DbType.Int32;
+            comm.Parameters.Add(couponID);
+
+            comm.ExecuteNonQuery();
         }
 
         private string PricePerSellableUnitMarked(int productID)
         {
-            //variables to hold the data returned by the query and add it to the dropdown menu
+            //variable to hold the data returned by the query
             string price;
 
             // create sql command object with the open connection object
@@ -350,13 +372,19 @@ namespace tellepjc_Assignment06
             //use the reader object to execuet our query
             reader = comm.ExecuteReader();
 
-            //iterate through the dataset line by line
-            reader.Read();
+            if (reader.HasRows)
+            {
+                //move cursor to the record
+                reader.Read();
+            }
+            //if there's no rows, returns a price of zero
+            else
+            {
+                return "0.00";
+            }
 
-                //stores the price
+            //stores the price
             price = reader.GetString(0);
-            //creates a list item with the text of the name of the model, and the value of the primary key of the model
-
 
             return price;
         }
