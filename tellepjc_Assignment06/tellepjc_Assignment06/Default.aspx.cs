@@ -1,4 +1,11 @@
-﻿/* Hello from Bill */
+﻿/**
+ * Connor Tellep and Danny Kroeger
+ * Assignment 06
+ * IT3047 Web Server App Dev
+ * 3/2/2017
+ * */
+
+/* Hello from Bill */
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,6 +37,9 @@ namespace tellepjc_Assignment06
             }
         }
 
+        /**
+         * Method to open database connection
+         * */
         private void OpenConnection()
         {
             //creates a configuration setting object for the connection string
@@ -77,8 +87,12 @@ namespace tellepjc_Assignment06
             return connString;
         }
 
+        /**
+         * Method to populate all of the dropdown menus
+         * */
         private void PopulateDropdowns()
         {
+            //calls the method of each respective dropdown menu
             PopulateLoyaltyList();
             PopulateTransactionTypeList();
             PopulateStoreList();
@@ -86,6 +100,9 @@ namespace tellepjc_Assignment06
             PopulateProductList();
         }
 
+        /**
+         * Populates loyalty number dropdown menu with information retrieved from the database
+         * */
         private void PopulateLoyaltyList()
         {
             //variables to hold the data returned by the query and add it to the dropdown menu
@@ -106,23 +123,26 @@ namespace tellepjc_Assignment06
             {
             }
             
-            //use the reader object to execuet our query
+            //use the reader object to execute our query
             reader = comm.ExecuteReader();
 
             //iterate through the dataset line by line
             while (reader.Read())
             {
-                //stores the primary key of the model
+                //stores the primary key of the loyalty account
                 loyaltyID = reader.GetInt32(0);
-                //stores the name of the model
+                //stores the number of the loyalty account
                 loyaltyNumber = reader.GetString(1);
-                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                //creates a list item with the text of the name of the loyalty account, and the value of the primary key of the loyalty account
                 loyaltyItem = new ListItem(loyaltyNumber, loyaltyID.ToString());
                 //adds the item to the dropdown menu
                 ddlLoyaltyID.Items.Add(loyaltyItem);
             }
         }
 
+        /**
+         * Populates the transaction type dropdown list with data retrieved from the database
+         * */
         private void PopulateTransactionTypeList()
         {
             
@@ -132,7 +152,7 @@ namespace tellepjc_Assignment06
             ListItem transactionTypeItem;
 
             // Clear the list box, in case we've already loaded something into it.
-            //drpModel.Items.Clear();
+            ddlTransactionTypeID.Items.Clear();
             // create sql command object with the open connection object
             comm = new SqlCommand("SELECT TransactionTypeID, TransactionType FROM tTransactionType", conn);
             //try to close the reader in case it's stil open, do nothing if we can't
@@ -144,17 +164,17 @@ namespace tellepjc_Assignment06
             {
             }
 
-            //use the reader object to execuet our query
+            //use the reader object to execute our query
             reader = comm.ExecuteReader();
 
             //iterate through the dataset line by line
             while (reader.Read())
             {
-                //stores the primary key of the model
+                //stores the primary key of the transaction type
                 transactionTypeID = reader.GetInt32(0);
-                //stores the name of the model
+                //stores the name of the transaction type
                 transactionType = reader.GetString(1);
-                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                //creates a list item with the text of the name of the transaction type, and the value of the primary key of the transaction type
                 transactionTypeItem = new ListItem(transactionType, transactionTypeID.ToString());
                 //adds the item to the dropdown menu
                 ddlTransactionTypeID.Items.Add(transactionTypeItem);
@@ -162,6 +182,9 @@ namespace tellepjc_Assignment06
 
         }
 
+        /**
+         * Populates the product dropdown list with data retrieed from the database
+         * */
         private void PopulateProductList()
         {
             
@@ -171,7 +194,7 @@ namespace tellepjc_Assignment06
             ListItem productItem;
 
             // Clear the list box, in case we've already loaded something into it.
-            //drpModel.Items.Clear();
+            ddlProductID.Items.Clear();
             // create sql command object with the open connection object
             comm = new SqlCommand("SELECT ProductID, Description FROM tProduct", conn);
             //try to close the reader in case it's stil open, do nothing if we can't
@@ -183,17 +206,17 @@ namespace tellepjc_Assignment06
             {
             }
 
-            //use the reader object to execuet our query
+            //use the reader object to execute our query
             reader = comm.ExecuteReader();
 
             //iterate through the dataset line by line
             while (reader.Read())
             {
-                //stores the primary key of the model
+                //stores the primary key of the product
                 productID = reader.GetInt32(0);
-                //stores the name of the model
+                //stores the name of the product
                 product = reader.GetString(1);
-                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                //creates a list item with the text of the name of the product, and the value of the primary key of the product
                 productItem = new ListItem(product, productID.ToString());
                 //adds the item to the dropdown menu
                 ddlProductID.Items.Add(productItem);
@@ -201,6 +224,9 @@ namespace tellepjc_Assignment06
             
         }
 
+        /**
+         * Populates the employee dropdown list with data retrieved from the database
+         * */
         private void PopulateEmployeeList()
         {
             
@@ -211,7 +237,7 @@ namespace tellepjc_Assignment06
             ListItem emplItem;
 
             // Clear the list box, in case we've already loaded something into it.
-            //drpModel.Items.Clear();
+            ddlEmplID.Items.Clear();
             // create sql command object with the open connection object
             comm = new SqlCommand("SELECT emplID, FirstName, LastName FROM tEmpl", conn);
             //try to close the reader in case it's stil open, do nothing if we can't
@@ -223,19 +249,19 @@ namespace tellepjc_Assignment06
             {
             }
 
-            //use the reader object to execuet our query
+            //use the reader object to execute our query
             reader = comm.ExecuteReader();
 
             //iterate through the dataset line by line
             while (reader.Read())
             {
-                //stores the primary key of the model
+                //stores the primary key of the employee
                 emplID = reader.GetInt32(0);
-                //stores the name of the model
+                //stores the name of the employee
                 employeeFirstName = reader.GetString(1);
                 employeeLastName = reader.GetString(2);
                 string empl = employeeFirstName + " " + employeeLastName;
-                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                //creates a list item with the text of the name of the employee, and the value of the primary key of the employee
                 emplItem = new ListItem(empl, emplID.ToString());
                 //adds the item to the dropdown menu
                 ddlEmplID.Items.Add(emplItem);
@@ -243,6 +269,9 @@ namespace tellepjc_Assignment06
             
         }
 
+        /**
+         * Populates the store dropdown list with data retrieved from the database
+         * */
         private void PopulateStoreList()
         {
             //variables to hold the data returned by the query and add it to the dropdown menu
@@ -251,7 +280,7 @@ namespace tellepjc_Assignment06
             ListItem storeItem;
 
             // Clear the list box, in case we've already loaded something into it.
-            //drpModel.Items.Clear();
+            ddlStoreID.Items.Clear();
             // create sql command object with the open connection object
             comm = new SqlCommand("SELECT StoreID, Store FROM tStore", conn);
             //try to close the reader in case it's stil open, do nothing if we can't
@@ -263,87 +292,80 @@ namespace tellepjc_Assignment06
             {
             }
 
-            //use the reader object to execuet our query
+            //use the reader object to execute our query
             reader = comm.ExecuteReader();
 
             //iterate through the dataset line by line
             while (reader.Read())
             {
-                //stores the primary key of the model
+                //stores the primary key of the store
                 storeID = reader.GetInt32(0);
-                //stores the name of the model
+                //stores the name of the store
                 store = reader.GetString(1);
-                //creates a list item with the text of the name of the model, and the value of the primary key of the model
+                //creates a list item with the text of the name of the store, and the value of the primary key of the store
                 storeItem = new ListItem(store, storeID.ToString());
                 //adds the item to the dropdown menu
                 ddlStoreID.Items.Add(storeItem);
             }
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        /**
+         * Retrieves data from the web form
+         * Passes the data to and executes the stored procedure spAddTransactionAndDetail
+         * */
+        private void ExecuteStoredProcedure()
         {
-            using (conn)
+            //create sqlcommand with the name of the stored procedure and our open connection
+            comm = new SqlCommand("dbo.spAddTransactionAndDetail", conn);
+            //set the command type to StoredProcedure
+            comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+            //get the date and format it
+            string strDate = calDateOfTransaction.SelectedDate.Date.ToString();
+            strDate = strDate.Substring(0, 9);
+            strDate = strDate.Trim();
+
+            //add parameters to the SqlCommand for the stored procedure
+            comm.Parameters.Add("@LoyaltyID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlLoyaltyID.SelectedValue);
+            comm.Parameters.Add("@DateOfTransaction", System.Data.SqlDbType.VarChar).Value = strDate;
+            comm.Parameters.Add("@TimeOfTransaction", System.Data.SqlDbType.VarChar).Value = tbxTimeOfTransaction.Text.Trim();
+            comm.Parameters.Add("@TransactionTypeID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlTransactionTypeID.SelectedValue);
+            comm.Parameters.Add("@StoreID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlStoreID.SelectedValue);
+            comm.Parameters.Add("@EmplID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlEmplID.SelectedValue);
+            comm.Parameters.Add("@ProductID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlProductID.SelectedValue);
+            comm.Parameters.Add("@PricePerSellableUnitAsMarked", System.Data.SqlDbType.VarChar).Value = PricePerSellableUnitMarked(Convert.ToInt32(ddlProductID.SelectedValue));
+            comm.Parameters.Add("@PricePerSellableUnitToTheCustomer", System.Data.SqlDbType.VarChar).Value = tbxPricePerSellableUnitToTheCustomer.Text;
+            comm.Parameters.Add("@TransactionComment", System.Data.SqlDbType.VarChar).Value = tbxTransactionComment.Text + "_tellepjc_kroegedl";
+            comm.Parameters.Add("@TransactionDetailComment", System.Data.SqlDbType.VarChar).Value = tbxtransactionDetailComment.Text + "_tellepjc_kroegedl";
+            comm.Parameters.Add("@couponDetailID", System.Data.SqlDbType.Int).Value = 1;
+            comm.Parameters.Add("@TransactionID", System.Data.SqlDbType.Int).Value = 1;
+
+            //if the qty text box isn't empty
+            if (tbxQty.Text.Length > 0)
             {
-                using (comm = new SqlCommand("dbo.spAddTransactionAndDetail", conn))
-                {
-                    comm.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    int testLoyaltyID = Convert.ToInt32(ddlLoyaltyID.SelectedValue);
-                    comm.Parameters.Add("@LoyaltyID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlLoyaltyID.SelectedValue);
-
-                    string strDate = calDateOfTransaction.SelectedDate.Date.ToString();
-                    strDate = strDate.Substring(0, 9);
-                    strDate = strDate.Trim();
-                    comm.Parameters.Add("@DateOfTransaction", System.Data.SqlDbType.VarChar).Value = "2017-03-02";
-
-                    string testTime = tbxTimeOfTransaction.Text.Trim();
-                    comm.Parameters.Add("@TimeOfTransaction", System.Data.SqlDbType.VarChar).Value = tbxTimeOfTransaction.Text.Trim();
-
-                    int testTypeID = Convert.ToInt32(ddlTransactionTypeID.SelectedValue);
-                    comm.Parameters.Add("@TransactionTypeID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlTransactionTypeID.SelectedValue);
-
-                    int testStoreID = Convert.ToInt32(ddlStoreID.SelectedValue);
-                    comm.Parameters.Add("@StoreID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlStoreID.SelectedValue);
-
-                    int testEmplID = Convert.ToInt32(ddlEmplID.SelectedValue);
-                    comm.Parameters.Add("@EmplID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlEmplID.SelectedValue);
-
-                    int testProductID = Convert.ToInt32(ddlProductID.SelectedValue);
-                    comm.Parameters.Add("@ProductID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlProductID.SelectedValue);
-
-                    int testQty = Convert.ToInt32(tbxQty.Text);
-                    comm.Parameters.Add("@Qty", System.Data.SqlDbType.Int).Value = Convert.ToInt32(tbxQty.Text);
-
-                    string testPrice = PricePerSellableUnitMarked(Convert.ToInt32(ddlProductID.SelectedValue));
-                    comm.Parameters.Add("@PricePerSellableUnitAsMarked", System.Data.SqlDbType.VarChar).Value = PricePerSellableUnitMarked(Convert.ToInt32(ddlProductID.SelectedValue));
-
-                    string testPriceSold = tbxPricePerSellableUnitToTheCustomer.Text;
-                    comm.Parameters.Add("@PricePerSellableUnitToTheCustomer", System.Data.SqlDbType.VarChar).Value = tbxPricePerSellableUnitToTheCustomer.Text;
-
-                    string testComment = tbxTransactionComment.Text + "_tellepjc_kroegedl";
-                    comm.Parameters.Add("@TransactionComment", System.Data.SqlDbType.VarChar).Value = tbxTransactionComment.Text + "_tellepjc_kroegedl";
-
-                    comm.Parameters.Add("@TransactionDetailComment", System.Data.SqlDbType.VarChar).Value = tbxtransactionDetailComment.Text + "_tellepjc_kroegedl";
-
-                    comm.Parameters.Add("@couponDetailID", System.Data.SqlDbType.Int).Value = 1;
-
-                    comm.Parameters.Add("@TransactionID", System.Data.SqlDbType.Int).Value = 1;
-/*
-                    comm = new SqlCommand("dbo.spAddTransactionAndDetail", conn);
-                    comm.CommandType = System.Data.CommandType.StoredProcedure;*/
-                    try
-                    {
-                        reader.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-
-                    int rows = comm.ExecuteNonQuery();
-                }
+                comm.Parameters.Add("@Qty", System.Data.SqlDbType.Int).Value = Convert.ToInt32(tbxQty.Text);
             }
+            //if the qty text box is empty, send a qty of 0
+            else
+            {
+                comm.Parameters.Add("@Qty", System.Data.SqlDbType.Int).Value = 0;
+            }
+
+            //try to close the reader object, do nothing if we can't
+            try
+            {
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+            //execute the stored procedure
+            comm.ExecuteNonQuery();
         }
 
+        /**
+         * Retreives the marked price for the product that has been selected in the web form
+         * */
         private string PricePerSellableUnitMarked(int productID)
         {
             //variable to hold the data returned by the query
@@ -360,24 +382,35 @@ namespace tellepjc_Assignment06
             {
             }
 
-            //use the reader object to execuet our query
+            //use the reader object to execute our query
             reader = cmd.ExecuteReader();
 
             if (reader.HasRows)
             {
                 //move cursor to the record
                 reader.Read();
+
+                //stores the price
+                price = Convert.ToString(reader.GetSqlValue(0));
             }
             //if there's no rows, returns a price of zero
             else
             {
-                return "0.00";
+                price = "0.00";
             }
 
-            //stores the price
-            price = Convert.ToString(reader.GetSqlValue(0));
-
+            //returns the price
             return price;
+        }
+
+        /**
+         * Click event handler for the submit button
+         * Executes the stored procedure spAddTransactionAndDetail
+         * */
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            //calls method to execute the stored procedure
+            ExecuteStoredProcedure();
         }
     }
 }

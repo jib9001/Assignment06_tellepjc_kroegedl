@@ -175,24 +175,6 @@ namespace tellepjc_Assignment06 {
         protected global::System.Web.UI.WebControls.TextBox tbxQty;
         
         /// <summary>
-        /// lblPricePerSellableUnitAsMarked control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPricePerSellableUnitAsMarked;
-        
-        /// <summary>
-        /// tbxPricePerSellableUnitAsMarked control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxPricePerSellableUnitAsMarked;
-        
-        /// <summary>
         /// lblPricePerSellableUnitToTheCustomer control.
         /// </summary>
         /// <remarks>
@@ -245,24 +227,6 @@ namespace tellepjc_Assignment06 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbxtransactionDetailComment;
-        
-        /// <summary>
-        /// lblCouponDetailID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCouponDetailID;
-        
-        /// <summary>
-        /// ddlCouponDetailID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCouponDetailID;
         
         /// <summary>
         /// btnSubmit control.
