@@ -282,75 +282,66 @@ namespace tellepjc_Assignment06
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            comm = new SqlCommand("dbo.spAddTransactionAndDetail", conn);
-            comm.CommandType = System.Data.CommandType.StoredProcedure;
+            using (conn)
+            {
+                using (comm = new SqlCommand("dbo.spAddTransactionAndDetail", conn))
+                {
+                    comm.CommandType = System.Data.CommandType.StoredProcedure;
 
-            SqlParameter loyaltyID = new SqlParameter("@LoyaltyID", Convert.ToInt32(ddlLoyaltyID.SelectedValue));
-            loyaltyID.Direction = System.Data.ParameterDirection.Input;
-            loyaltyID.DbType = System.Data.DbType.Int32;
-            comm.Parameters.Add(loyaltyID);
+                    int testLoyaltyID = Convert.ToInt32(ddlLoyaltyID.SelectedValue);
+                    comm.Parameters.Add("@LoyaltyID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlLoyaltyID.SelectedValue);
 
-            SqlParameter date = new SqlParameter("@DateOfTransaction", calDateOfTransaction.SelectedDate);
-            date.Direction = System.Data.ParameterDirection.Input;
-            date.DbType = System.Data.DbType.Date;
-            comm.Parameters.Add(date);
+                    string strDate = calDateOfTransaction.SelectedDate.Date.ToString();
+                    strDate = strDate.Substring(0, 9);
+                    strDate = strDate.Trim();
+                    comm.Parameters.Add("@DateOfTransaction", System.Data.SqlDbType.VarChar).Value = "2017-03-02";
 
-            SqlParameter time = new SqlParameter("@TimeOfTransaction", tbxTimeOfTransaction.Text);
-            time.Direction = System.Data.ParameterDirection.Input;
-            time.DbType = System.Data.DbType.String;
-            comm.Parameters.Add(time);
+                    string testTime = tbxTimeOfTransaction.Text.Trim();
+                    comm.Parameters.Add("@TimeOfTransaction", System.Data.SqlDbType.VarChar).Value = tbxTimeOfTransaction.Text.Trim();
 
-            SqlParameter TransactionTypeID = new SqlParameter("@TransactionTypeID", Convert.ToInt32(ddlTransactionTypeID.SelectedValue));
-            TransactionTypeID.Direction = System.Data.ParameterDirection.Input;
-            TransactionTypeID.DbType = System.Data.DbType.Int32;
-            comm.Parameters.Add(TransactionTypeID);
+                    int testTypeID = Convert.ToInt32(ddlTransactionTypeID.SelectedValue);
+                    comm.Parameters.Add("@TransactionTypeID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlTransactionTypeID.SelectedValue);
 
-            SqlParameter storeID = new SqlParameter("@StoreID", Convert.ToInt32(ddlStoreID.SelectedValue));
-            storeID.Direction = System.Data.ParameterDirection.Input;
-            storeID.DbType = System.Data.DbType.Int32;
-            comm.Parameters.Add(storeID);
+                    int testStoreID = Convert.ToInt32(ddlStoreID.SelectedValue);
+                    comm.Parameters.Add("@StoreID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlStoreID.SelectedValue);
 
-            SqlParameter emplID = new SqlParameter("@EmplID", Convert.ToInt32(ddlEmplID.SelectedValue));
-            emplID.Direction = System.Data.ParameterDirection.Input;
-            emplID.DbType = System.Data.DbType.Int32;
-            comm.Parameters.Add(emplID);
+                    int testEmplID = Convert.ToInt32(ddlEmplID.SelectedValue);
+                    comm.Parameters.Add("@EmplID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlEmplID.SelectedValue);
 
-            SqlParameter productID = new SqlParameter("@ProductID", Convert.ToInt32(ddlProductID.SelectedValue));
-            productID.Direction = System.Data.ParameterDirection.Input;
-            productID.DbType = System.Data.DbType.Int32;
-            comm.Parameters.Add(productID);
+                    int testProductID = Convert.ToInt32(ddlProductID.SelectedValue);
+                    comm.Parameters.Add("@ProductID", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlProductID.SelectedValue);
 
-            SqlParameter qty = new SqlParameter("@Qty", Convert.ToInt32(tbxQty.Text));
-            qty.Direction = System.Data.ParameterDirection.Input;
-            qty.DbType = System.Data.DbType.Int32;
-            comm.Parameters.Add(qty);
+                    int testQty = Convert.ToInt32(tbxQty.Text);
+                    comm.Parameters.Add("@Qty", System.Data.SqlDbType.Int).Value = Convert.ToInt32(tbxQty.Text);
 
-            SqlParameter initialPrice = new SqlParameter("@PricePerSellableUnitAsMarked", PricePerSellableUnitMarked(Convert.ToInt32(ddlProductID.Text)));
-            initialPrice.Direction = System.Data.ParameterDirection.Input;
-            initialPrice.DbType = System.Data.DbType.String;
-            comm.Parameters.Add(initialPrice);
+                    string testPrice = PricePerSellableUnitMarked(Convert.ToInt32(ddlProductID.SelectedValue));
+                    comm.Parameters.Add("@PricePerSellableUnitAsMarked", System.Data.SqlDbType.VarChar).Value = PricePerSellableUnitMarked(Convert.ToInt32(ddlProductID.SelectedValue));
 
-            SqlParameter priceSold = new SqlParameter("@PricePerSellableUnitToTheCustomer", tbxPricePerSellableUnitToTheCustomer.Text);
-            priceSold.Direction = System.Data.ParameterDirection.Input;
-            priceSold.DbType = System.Data.DbType.String;
-            comm.Parameters.Add(priceSold);
+                    string testPriceSold = tbxPricePerSellableUnitToTheCustomer.Text;
+                    comm.Parameters.Add("@PricePerSellableUnitToTheCustomer", System.Data.SqlDbType.VarChar).Value = tbxPricePerSellableUnitToTheCustomer.Text;
 
-            SqlParameter transactionComment = new SqlParameter("@TransactionComment", (tbxTransactionComment.Text + "_tellepjc_kroegedl"));
-            transactionComment.Direction = System.Data.ParameterDirection.Input;
-            transactionComment.DbType = System.Data.DbType.String;
-            comm.Parameters.Add(transactionComment);
+                    string testComment = tbxTransactionComment.Text + "_tellepjc_kroegedl";
+                    comm.Parameters.Add("@TransactionComment", System.Data.SqlDbType.VarChar).Value = tbxTransactionComment.Text + "_tellepjc_kroegedl";
 
-            SqlParameter transactionDetailComment = new SqlParameter("@TransactionDetailComment", (tbxtransactionDetailComment.Text + "_tellepjc_kroegedl"));
-            transactionDetailComment.Direction = System.Data.ParameterDirection.Input;
-            transactionDetailComment.DbType = System.Data.DbType.String;
-            comm.Parameters.Add(transactionDetailComment);
+                    comm.Parameters.Add("@TransactionDetailComment", System.Data.SqlDbType.VarChar).Value = tbxtransactionDetailComment.Text + "_tellepjc_kroegedl";
 
-            SqlParameter couponID = new SqlParameter("@CouponDetailID", 0);
-            couponID.Direction = System.Data.ParameterDirection.Input;
-            couponID.DbType = System.Data.DbType.Int32;
-            comm.Parameters.Add(couponID);
+                    comm.Parameters.Add("@couponDetailID", System.Data.SqlDbType.Int).Value = 1;
 
-            comm.ExecuteNonQuery();
+                    comm.Parameters.Add("@TransactionID", System.Data.SqlDbType.Int).Value = 1;
+/*
+                    comm = new SqlCommand("dbo.spAddTransactionAndDetail", conn);
+                    comm.CommandType = System.Data.CommandType.StoredProcedure;*/
+                    try
+                    {
+                        reader.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+
+                    int rows = comm.ExecuteNonQuery();
+                }
+            }
         }
 
         private string PricePerSellableUnitMarked(int productID)
@@ -359,7 +350,7 @@ namespace tellepjc_Assignment06
             string price;
 
             // create sql command object with the open connection object
-            comm = new SqlCommand("SELECT InitialPricePerSellableUnit FROM tProduct WHERE ProductID = " + productID, conn);
+            SqlCommand cmd = new SqlCommand("SELECT InitialPricePerSellableUnit FROM tProduct WHERE ProductID = " + productID, conn);
             //try to close the reader in case it's stil open, do nothing if we can't
             try
             {
@@ -370,7 +361,7 @@ namespace tellepjc_Assignment06
             }
 
             //use the reader object to execuet our query
-            reader = comm.ExecuteReader();
+            reader = cmd.ExecuteReader();
 
             if (reader.HasRows)
             {
@@ -384,7 +375,7 @@ namespace tellepjc_Assignment06
             }
 
             //stores the price
-            price = reader.GetString(0);
+            price = Convert.ToString(reader.GetSqlValue(0));
 
             return price;
         }
